@@ -64,9 +64,10 @@ def run_onionscan(onion):
 
     print("[*] Onionscanning %s" %onion)
 
-    process = subprocess.Popen(["onionscan", "webport=0", "--jsonReport", "--simpleReport= false",
-                                onion], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+    process = subprocess.Popen(["onionscan", "-webport 0", "-jsonReport", "-simpleReport false",
+                                ], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 
+    
     process_timer = Timer(300,handle_timeout,args=[process,onion])
     process_timer.start()
 
@@ -75,8 +76,8 @@ def run_onionscan(onion):
 
     # we have received valid results so we can kill the timer 
     if process_timer.is_alive():
-            process_timer.cancel()
-            return stdout
+        process_timer.cancel()
+        return stdout
 
     print("[!!!] Process timed out!")	
 
@@ -138,7 +139,7 @@ def process_results(onion, json_response):
     
     #Play with the string
     #So its readable
-    scan_result = ur"%s" %json_response.decode("utf-8")
+    scan_result = "%s" %json_response.decode("utf-8")
     
     scan_result = json.loads(scan_result)
 
