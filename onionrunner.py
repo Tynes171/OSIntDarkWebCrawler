@@ -182,8 +182,8 @@ random.shuffle(onions)
 session_onions = list(onions)
 
 count = 0
-print(sys.argv[1])
-while count < sys.argv[1]:
+
+while count < len(onions):
 
     identity_lock.wait()
 
