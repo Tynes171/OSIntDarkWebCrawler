@@ -64,8 +64,8 @@ def run_onionscan(onion):
 
     print("[*] Onionscanning %s" %onion)
 
-    process = subprocess.Popen(["onionscan", "-webport 0", "-jsonReport", "-simpleReport false",
-                                ], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+    process = subprocess.Popen(["onionscan", "-webport=0", "-jsonReport", "-simpleReport=false",
+                                onion], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 
     
     process_timer = Timer(300,handle_timeout,args=[process,onion])
@@ -152,8 +152,8 @@ def process_results(onion, json_response):
     if scan_result['identifierReport']['relatedOnionDomains'] is not None:
         add_new_onions(scan_result['identifierReport']['relatedOnionDomains'])
 
-    if scan_result['identifeirReport']['relatedOnionServices'] is not None:
-        add_new_onions(scan_result['identifeirReport']['relatedOnionServices'])
+    if scan_result['identifierReport']['relatedOnionServices'] is not None:
+        add_new_onions(scan_result['identifierReport']['relatedOnionServices'])
         
     return
 
@@ -162,7 +162,7 @@ def add_new_onions(new_onion_list):
     global onions
     global sessions_onions
 
-    for linked_onions in new_onions_list:
+    for linked_onions in new_onion_list:
 
         if linked_onion not in onions and linked_onion.endswith(".onion"):
 
@@ -182,8 +182,8 @@ random.shuffle(onions)
 session_onions = list(onions)
 
 count = 0
-
-while count < len(onions):
+print(sys.argv[1])
+while count < sys.argv[1]:
 
     identity_lock.wait()
 
