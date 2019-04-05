@@ -162,7 +162,7 @@ def add_new_onions(new_onion_list):
     global onions
     global sessions_onions
 
-    for linked_onions in new_onion_list:
+    for linked_onion in new_onion_list:
 
         if linked_onion not in onions and linked_onion.endswith(".onion"):
 
