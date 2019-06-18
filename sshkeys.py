@@ -7,6 +7,8 @@ shodan_client = shodan.Shodan("UP0w4Q2nzKn3RMJYB7XXgN25xCNI0YTv")
 
 file_list = glob.glob("onionscan_results/*.json")
 
+file = open('OpenServices.txt','w')
+
 ssh_key_list = []
 key_to_hosts = {}
 
@@ -60,7 +62,9 @@ for ssh_key in key_to_hosts:
         for hit in shodan_result['matches']:
 
             print "[WARNING!!!] Hit for %s on %s for hidden services %s" %(ssh_key, hit['ip_str'], ", ".join(key_to_hosts[ssh_key]))
-        
+            file.write(hit['ip_str'])
+
+file.close()
 
 
 
