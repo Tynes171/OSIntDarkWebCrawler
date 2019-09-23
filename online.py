@@ -20,7 +20,7 @@ for json_file in file_list:
 
         scan_result = json.load(fd)
 
-        if scan_result['online'] is not 'false':
+        if scan_result['online'] is not u'false':
 
         	print scan_result['hiddenService']
 
